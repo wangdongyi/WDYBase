@@ -26,7 +26,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    provided 'com.github.wangdongyi:LifeObserved:1.0.0'//生命周期监听
-    provided 'com.google.code.gson:gson:2.8.5'
-    provided 'com.belerweb:pinyin4j:2.5.1'
+    compile 'com.github.wangdongyi:LifeObserved:1.0.0'//生命周期监听
+    compile 'com.google.code.gson:gson:2.8.5'
+    compile 'com.belerweb:pinyin4j:2.5.1'
 }
