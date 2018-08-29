@@ -18,10 +18,7 @@ android {
         }
     }
     buildToolsVersion '28.0.2'
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
 }
 
 dependencies {
@@ -30,7 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile 'com.github.wangdongyi:LifeObserved:1.0.0'//生命周期监听
-    compile 'com.android.support:multidex:1.0.3'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.belerweb:pinyin4j:2.5.1'
 }

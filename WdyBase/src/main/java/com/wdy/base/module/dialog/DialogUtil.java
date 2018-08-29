@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.wdy.base.module.R;
+import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.util.CodeUtil;
 
 /**
@@ -24,7 +25,12 @@ public class DialogUtil {
             dialog = new Dialog(mContext, R.style.DialogStyle);
             @SuppressLint("InflateParams")
             View view = LayoutInflater.from(mContext).inflate(R.layout.loading_layout, null);
-            view.setOnClickListener(v -> dialog.dismiss());
+            view.setOnClickListener(new NoDoubleClickListener() {
+                @Override
+                protected void onNoDoubleClick(View v) {
+                    dismiss();
+                }
+            });
             dialog.setContentView(view);
             dialog.setCancelable(true);
             Window win = dialog.getWindow();

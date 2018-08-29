@@ -13,6 +13,7 @@ import android.widget.Toast;
  */
 @SuppressLint("ShowToast")
 public class ToastUtil {
+    private static ToastUtil toastUtil;
     private static Toast tst = null;
     private Context context;
     private static Handler mHandler = new Handler();
@@ -21,8 +22,16 @@ public class ToastUtil {
             tst.cancel();
         }
     };
-
-    public ToastUtil(Context context) {
+    public static ToastUtil getToast(Context context) {
+        if (toastUtil == null) {
+            synchronized (ToastUtil.class) {
+                if (toastUtil == null)
+                    toastUtil = new ToastUtil(context);
+            }
+        }
+        return toastUtil;
+    }
+    private ToastUtil(Context context) {
         this.context = context;
     }
 

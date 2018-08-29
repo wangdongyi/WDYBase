@@ -19,8 +19,17 @@ public class SharedPreferencesUtil {
     //存储的sharedPreferences文件名
     private static final String FILE_NAME = "save_file_name";
     private static SharedPreferences sharedPreferences;
-
-    public SharedPreferencesUtil(Context context) {
+    private static SharedPreferencesUtil sharedPreferencesUtil;
+    public static SharedPreferencesUtil getShared(Context context) {
+        if (sharedPreferencesUtil == null) {
+            synchronized (SharedPreferencesUtil.class) {
+                if (sharedPreferencesUtil == null)
+                    sharedPreferencesUtil = new SharedPreferencesUtil(context);
+            }
+        }
+        return sharedPreferencesUtil;
+    }
+    private SharedPreferencesUtil(Context context) {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
