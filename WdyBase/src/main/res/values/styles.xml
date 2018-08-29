@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <style name="PhotoDialog">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去黑线 -->
+        <item name="android:windowFullscreen">false</item>
+        <!-- 全屏 -->
+    </style>
+
+    <style name="AnimBottom" parent="@style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="popShow" parent="@style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <item name="android:windowExitAnimation">@anim/pophide_anim</item>
+    </style>
+
+    <style name="Animation">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="player_style_dialog_progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/player_popup_toast_anim</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="player_popup_toast_anim" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <declare-styleable name="PieChartSexView">
+        <attr name="ChartWidth" format="dimension" />
+    </declare-styleable>
+
+
+    <style name="BackRelativeLayout">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="titleStyles">
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+
+    <declare-styleable name="SideBar">
+        <attr name="SideBar_textSize" format="integer" />
+        <attr name="SideBar_textColor" format="color" />
+    </declare-styleable>
+    <!-- Textview两端对齐的自定义属性-->
+    <declare-styleable name="AlignTextView">
+        <!-- 文本-->
+        <attr name="text" format="string" />
+        <!-- 后缀符号类型:全角、半角-->
+        <attr name="suffixMode" format="enum">
+            <enum name="full_width" value="1" />
+            <enum name="half_width" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="timingView">
+        <attr name="CircleColor" format="color" />
+        <attr name="CircleWidth" format="integer" />
+        <attr name="CircleSpeed" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="WdyEditTextStyleable">
+        <attr name="delete_width" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="LoadingView">
+        <attr name="loadingColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="CellularView">
+        <attr name="CellularColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontal_spacing" format="dimension" />
+        <attr name="vertical_spacing" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="PickerViewStyleable">
+        <attr name="selected_size" format="dimension" />
+        <attr name="selected_color" format="color" />
+        <attr name="hint_size" format="dimension" />
+        <attr name="hint_color" format="color" />
+    </declare-styleable>
+
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+    </style>
+
+    <attr name="default_text_size_large" format="reference|dimension" />
+    <attr name="default_text_size_big_mall" format="reference|dimension" />
+    <attr name="default_text_size_big" format="reference|dimension" />
+    <attr name="default_text_size" format="reference|dimension" />
+    <attr name="default_text_size_small" format="reference|dimension" />
+    <attr name="default_text_size_little" format="reference|dimension" />
+    <attr name="default_text_size_little_small" format="reference|dimension" />
+
+
+
+
+    <style name="LineVertical">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <style name="LineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <declare-styleable name="CalibrationSeekBar">
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="textBackground" format="reference" />
+        <attr name="textOrientation" format="enum">
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="text_black">#292d30</color>
+    <color name="text_normal">#50627b</color>
+    <color name="text_shallow">#96a1b0</color>
+    <color name="text_red">#FF705C</color>
+    <color name="text_grey">#96a1b0</color>
+    <color name="text_grey_normal">#454D68</color>
+    <color name="text_blue">#15b4f1</color>
+    <color name="text_green">#48d2a0</color>
+    <color name="text_orange">#FF9B02</color>
+    <color name="text_dark_gray">#bbbbbb</color>
+    <color name="text_light_gray">#d0d0d0</color>
+    <color name="line">#e6e6e6</color>
+    <color name="btn_unable">#F2F2F2</color>
+    <color name="btn_red">#FC525E</color>
+    <color name="btn_grey">#c8c8c8</color>
+    <color name="text_bottom_blue">#4B86FF</color>
+    <color name="text_bottom_gray">#96A1B0</color>
+    <!--黑色 -->
+    <color name="half_transparent">#11000000</color>
+    <color name="transparent">#00000000</color>
+    <!--标题颜色-->
+    <color name="top_color">#15b4f1</color>
+    <!--标题文字颜色-->
+    <color name="title_textColor">#292d30</color>
+    <!--标题颜色-->
+    <color name="colorPrimary">#ffffff</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark">#ffffff</color>
+    <!--控件颜色-->
+    <color name="colorAccent">#ffffff</color>
+    <!--标题栏控件颜色-->
+    <color name="DrawerArrowToggleColor">#ffffff</color>
+    <color name="blue">#15b4f1</color>
+    <color name="grey">#efeff4</color>
+    <color name="orange">#FCAE42</color>
+    <color name="background_gray">#efeff4</color>
+    <color name="music_background_gray">#F8F8F8</color>
+
+    <color name="cpb_grey">#F9F9F9</color>
+    <color name="cpb_blue">#1ea1f3</color>
+    <color name="cpb_blue_dark">#ff00719b</color>
+    <color name="cpb_red">#ffff4444</color>
+    <color name="cpb_red_dark">#ffcd3a3a</color>
+    <color name="cpb_green">#ff99cc00</color>
+    <color name="cpb_green_dark">#ff6d9b00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#C0FFFF00</color>
+
+</resources>
