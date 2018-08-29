@@ -41,17 +41,17 @@ public class SharedPreferencesUtil {
      */
     public void saveBean(String key, Object data) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String serialize = WDYJsonUtil.toJson(data);
-        editor.putString(key, serialize);
+//        String serialize = WDYJsonUtil.toJson(data);
+//        editor.putString(key, serialize);
         editor.apply();
     }
 
-    public <T> T getBean(String Key, Class<T> entityClass) {
-        String s = sharedPreferences.getString(Key, null);
-        T bean = WDYJsonUtil.GetEntity(WDYJsonUtil.GetJsonObjByLevel(s), entityClass);
-
-        return bean;
-    }
+//    public <T> T getBean(String Key, Class<T> entityClass) {
+//        String s = sharedPreferences.getString(Key, null);
+////        T bean = WDYJsonUtil.GetEntity(WDYJsonUtil.GetJsonObjByLevel(s), entityClass);
+//
+//        return bean;
+//    }
 
     public void saveList(String key, Object data) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
