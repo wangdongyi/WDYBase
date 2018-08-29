@@ -14,9 +14,17 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -289,28 +297,28 @@ public class CodeUtil {
         return true;
     }
 
-//    /*汉字转拼音*/
-//    public static String getPingYin(String inputString) {
-//        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-//        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-//        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-//        format.setVCharType(HanyuPinyinVCharType.WITH_V);
-//        char[] input = inputString.trim().toCharArray();
-//        String output = "";
-//        try {
-//            for (char curchar : input) {
-//                if (Character.toString(curchar).matches("[\\u4E00-\\u9FA5]+")) {
-//                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(curchar, format);
-//                    output += temp[0];
-//                } else
-//                    output += Character.toString(curchar);
-//            }
-//        } catch (BadHanyuPinyinOutputFormatCombination e) {
-//            e.printStackTrace();
-//        }
-//        Log.d(inputString, output);
-//        return output;
-//    }
+    /*汉字转拼音*/
+    public static String getPingYin(String inputString) {
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        format.setVCharType(HanyuPinyinVCharType.WITH_V);
+        char[] input = inputString.trim().toCharArray();
+        String output = "";
+        try {
+            for (char curchar : input) {
+                if (Character.toString(curchar).matches("[\\u4E00-\\u9FA5]+")) {
+                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(curchar, format);
+                    output += temp[0];
+                } else
+                    output += Character.toString(curchar);
+            }
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
+            e.printStackTrace();
+        }
+        Log.d(inputString, output);
+        return output;
+    }
 
 
 
