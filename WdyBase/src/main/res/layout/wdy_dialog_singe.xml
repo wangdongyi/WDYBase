@@ -10,7 +10,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/wdy_round_white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="1dp">
 
 
         <TextView
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_normal"
                 android:textSize="15sp" />
 
 

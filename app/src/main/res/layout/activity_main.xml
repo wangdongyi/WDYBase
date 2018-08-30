@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,4 +16,13 @@
         android:text="单按钮提示框"
         android:textColor="@color/white" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/text_green"
+        android:gravity="center"
+        android:onClick="mDialog"
+        android:text="Material风格提示框"
+        android:textColor="@color/white" />
 </LinearLayout>
