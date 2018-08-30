@@ -3,7 +3,7 @@
 
 
 
-    <style name="PhotoDialog">
+    <style name="WDYDialog">
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowFrame">@null</item>
         <!-- 边框 -->

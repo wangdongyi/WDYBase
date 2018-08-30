@@ -19,7 +19,7 @@
     <color name="text_bottom_blue">#4B86FF</color>
     <color name="text_bottom_gray">#96A1B0</color>
     <!--黑色 -->
-    <color name="half_transparent">#11000000</color>
+    <color name="half_transparent">#31232f34</color>
     <color name="transparent">#00000000</color>
     <!--标题颜色-->
     <color name="top_color">#15b4f1</color>
