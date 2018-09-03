@@ -13,4 +13,5 @@
                 android:bottomRightRadius="6dip" />
         </shape>
     </item>
+    <item android:drawable="@drawable/wdy_bottom_round_white" />
 </ripple>
