@@ -6,42 +6,38 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tlTabLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#262626"
+            app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+            app:tabTextColor="#262626">
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tlTabLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="#262626"
-                app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-                app:tabTextColor="#262626">
-
-            </android.support.design.widget.TabLayout>
-        </RelativeLayout>
+        </android.support.design.widget.TabLayout>
 
 
         <TextView
             android:id="@+id/tvSure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:padding="13dp"
             android:text="@string/sure"
             android:textSize="17sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="-1.5dp"
         android:background="@color/line" />
 
 
