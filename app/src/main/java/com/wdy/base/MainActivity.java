@@ -13,6 +13,7 @@ import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
 import com.wdy.base.module.dialog.DialogUtil;
 import com.wdy.base.module.listen.NoDoubleClickListener;
+import com.wdy.base.module.view.adresse.AddressPickerView;
 import com.wdy.base.module.view.adresse.CityPickerView;
 
 
@@ -46,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void DialogAddress(View view) {
-        DialogCity.getInstance().with(this, new CityPickerView.OnAddressPickerSureListener() {
+        DialogAddress.getInstance().with(this, new AddressPickerView.OnAddressPickerSureListener() {
             @Override
-            public void onSureClick(String address, String provinceCode, String cityCode) {
-                DialogCity.Dismiss();
+            public void onSureClick(String address, String provinceCode, String cityCode, String districtCode) {
+                DialogAddress.Dismiss();
                 DialogMUtil.getInstance().with(MainActivity.this, "提示", address + "\n" + provinceCode + "\n" + cityCode, new NoDoubleClickListener() {
                     @Override
                     protected void onNoDoubleClick(View v) {
