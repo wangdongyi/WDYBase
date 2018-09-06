@@ -25,6 +25,7 @@
         android:onClick="mDialog"
         android:text="Material风格提示框"
         android:textColor="@color/white" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -34,6 +35,7 @@
         android:onClick="successDialog"
         android:text="成功提示"
         android:textColor="@color/white" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -42,5 +44,15 @@
         android:gravity="center"
         android:onClick="failedDialog"
         android:text="失败提示"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/text_bottom_gray"
+        android:gravity="center"
+        android:onClick="DialogAddress"
+        android:text="地区选择"
         android:textColor="@color/white" />
 </LinearLayout>

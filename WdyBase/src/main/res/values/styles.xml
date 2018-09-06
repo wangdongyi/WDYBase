@@ -22,6 +22,25 @@
         <item name="android:windowFullscreen">false</item>
         <!-- 全屏 -->
     </style>
+    <style name="WDYBottomDialog">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去黑线 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 全屏 -->
+    </style>
 
     <style name="AnimBottom" parent="@style/Animation">
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
@@ -135,7 +154,10 @@
     <attr name="default_text_size_little" format="reference|dimension" />
     <attr name="default_text_size_little_small" format="reference|dimension" />
 
-
+    <!--设置tabLayout字体大小-->
+    <style name="MyCustomTabTextAppearance">
+        <item name="android:textSize">17sp</item>
+    </style>
 
 
     <style name="LineVertical">

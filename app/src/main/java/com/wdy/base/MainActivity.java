@@ -3,13 +3,17 @@ package com.wdy.base;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.wdy.base.module.dialog.DialogAddress;
+import com.wdy.base.module.dialog.DialogCity;
 import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
 import com.wdy.base.module.dialog.DialogUtil;
 import com.wdy.base.module.listen.NoDoubleClickListener;
+import com.wdy.base.module.view.adresse.CityPickerView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,5 +43,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void failedDialog(View view) {
         DialogFailed.getInstance().with(this, "失败\n这是一个Material风格的提示框");
+    }
+
+    public void DialogAddress(View view) {
+        DialogCity.getInstance().with(this, new CityPickerView.OnAddressPickerSureListener() {
+            @Override
+            public void onSureClick(String address, String provinceCode, String cityCode) {
+                DialogCity.Dismiss();
+                DialogMUtil.getInstance().with(MainActivity.this, "提示", address + "\n" + provinceCode + "\n" + cityCode, new NoDoubleClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View v) {
+                        DialogMUtil.Dismiss();
+                    }
+                });
+            }
+        });
     }
 }
