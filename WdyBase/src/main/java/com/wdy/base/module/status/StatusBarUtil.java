@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.wdy.base.module.util.CodeUtil;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -38,10 +40,51 @@ public class StatusBarUtil {
                 int vis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 //                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//拓展布局到导航栏后面
 //                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//隐藏导航栏，用户点击屏幕会显示导航栏
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//拓展布局到状态栏后面
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//拓展布局到状态栏后面
 //                        | View.SYSTEM_UI_FLAG_FULLSCREEN//隐藏状态栏
                         | View.SYSTEM_UI_FLAG_IMMERSIVE;
 
+                //沉浸模式，用户可以交互的界面
+                if (dark) {
+                    vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else {
+                    vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                }
+                decorView.setSystemUiVisibility(vis);
+            }
+        }
+        if (isFlyme()) {
+            FlymeSetStatusBarLightMode(window, dark);
+        }
+    }
+
+    public static void setStatusBar(Window window,
+                                    String statusColor,
+                                    String navigationColor,
+                                    boolean status,
+                                    boolean navigation,
+                                    boolean dark) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(CodeUtil.isEmpty(statusColor) ? Color.TRANSPARENT : Color.parseColor(statusColor));
+            window.setNavigationBarColor(CodeUtil.isEmpty(navigationColor) ? Color.TRANSPARENT : Color.parseColor(navigationColor));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            if (decorView != null) {
+                int vis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE;
+                if (navigation) {
+                    vis |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;//拓展布局到状态栏后面
+                }
+                if (status) {
+                    vis |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;//拓展布局到状态栏后面
+                }
                 //沉浸模式，用户可以交互的界面
                 if (dark) {
                     vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
@@ -74,7 +117,7 @@ public class StatusBarUtil {
                 int vis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 //                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//拓展布局到导航栏后面
 //                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//隐藏导航栏，用户点击屏幕会显示导航栏
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//拓展布局到状态栏后面
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//拓展布局到状态栏后面
 //                        | View.SYSTEM_UI_FLAG_FULLSCREEN//隐藏状态栏
                         | View.SYSTEM_UI_FLAG_IMMERSIVE;
 
