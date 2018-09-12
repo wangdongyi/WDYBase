@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wdy.base.module.base.WDYBaseActivity;
 import com.wdy.base.module.dialog.DialogAddress;
 import com.wdy.base.module.dialog.DialogCity;
 import com.wdy.base.module.dialog.DialogFailed;
@@ -17,7 +18,7 @@ import com.wdy.base.module.view.adresse.AddressPickerView;
 import com.wdy.base.module.view.adresse.CityPickerView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends WDYBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
