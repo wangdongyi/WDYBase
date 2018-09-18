@@ -70,8 +70,8 @@ public class WDYBaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        closeSoftKeyboard();
         super.onBackPressed();
+        closeSoftKeyboard();
     }
 
     @Override
