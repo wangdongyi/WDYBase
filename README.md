@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/wangdongyi/WDYBase.svg)](https://jitpack.io/#wangdongyi/WDYBase)
 我的基础包
 ## 权限调用
-、、、
+```
 List<String> pList = new ArrayList<>();
         pList.add(Manifest.permission.READ_PHONE_STATE);
         pList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -23,4 +23,4 @@ List<String> pList = new ArrayList<>();
                 }
             }
         });
-、、、
+```
