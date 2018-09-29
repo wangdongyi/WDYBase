@@ -3,6 +3,7 @@
 我的基础包
 ## 权限调用
 ```
+ PMUtil(AppCompatActivity activity, List<String> permissions, OnPermissionBack onPermissionBack)//构造函数
 List<String> pList = new ArrayList<>();
         pList.add(Manifest.permission.READ_PHONE_STATE);
         pList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -24,3 +25,30 @@ List<String> pList = new ArrayList<>();
             }
         });
 ```
+## 常用提示框
+```
+ DialogSinge.getInstance().with(this, "这是一个单独的提示");
+ //
+ DialogMUtil.getInstance().with(this, "提示", "这是一个Material风格的提示框", new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                DialogMUtil.Dismiss();
+            }
+        });
+ //
+ DialogSuccess.getInstance().with(this, "成功\n这是一个Material风格的提示框");
+ //
+ DialogFailed.getInstance().with(this, "失败\n这是一个Material风格的提示框");
+ //
+ DialogAddress.getInstance().with(this, new AddressPickerView.OnAddressPickerSureListener() {
+            @Override
+            public void onSureClick(String address, String provinceCode, String cityCode, String districtCode) {
+                DialogAddress.Dismiss();
+                DialogMUtil.getInstance().with(MainActivity.this, "提示", address + "\n" + provinceCode + "\n" + cityCode, new NoDoubleClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View v) {
+                        DialogMUtil.Dismiss();
+                    }
+                });
+            }
+        });
