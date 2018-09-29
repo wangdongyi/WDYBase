@@ -1,9 +1,7 @@
 # WDYBase
-我的基础包
 [![](https://jitpack.io/v/wangdongyi/WDYBase.svg)](https://jitpack.io/#wangdongyi/WDYBase)
-、、、
-权限调用
-//PMUtil(AppCompatActivity activity, List<String> permissions, OnPermissionBack onPermissionBack) 
+我的基础包
+## 权限调用
 List<String> pList = new ArrayList<>();
         pList.add(Manifest.permission.READ_PHONE_STATE);
         pList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -12,8 +10,6 @@ List<String> pList = new ArrayList<>();
             @Override
             public void permissionBack(boolean grant) {
                 if (!grant) {
-                    // 如果用户没有授权，那么应该说明意图，引导用户去设置里面授权。
-
                     DialogMUtil.getInstance().with(MainActivity.this, "提示", "应用缺少必要的权限！是否前去设置，打开所需要的权限。", new NoDoubleClickListener() {
                         @Override
                         protected void onNoDoubleClick(View v) {
@@ -26,4 +22,3 @@ List<String> pList = new ArrayList<>();
                 }
             }
         });
-、、、
