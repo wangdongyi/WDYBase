@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.Toast;
 
 import com.wdy.base.module.base.WDYBaseActivity;
 import com.wdy.base.module.dialog.DialogAddress;
@@ -14,6 +13,7 @@ import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
+import com.wdy.base.module.dialog.DialogUtil;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.permission.PMUtil;
 import com.wdy.base.module.view.adresse.AddressPickerView;
@@ -50,6 +50,7 @@ public class MainActivity extends WDYBaseActivity {
                 }
             }
         });
+        DialogUtil.show(this);
     }
 
     public void singeDialog(View view) {

@@ -5,12 +5,18 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.wdy.base.module.dialog.DialogMUtil;
+import com.wdy.base.module.listen.NoDoubleClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,5 +140,17 @@ public class PMUtil {
 
     public interface OnPermissionBack {
         void permissionBack(boolean grant);
+    }
+
+    public void showOpenP() {
+        DialogMUtil.getInstance().with(activity, "提示", "应用缺少必要的权限！请点击确定，打开所有的权限。", new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                DialogMUtil.Dismiss();
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.setData(Uri.parse("package:" + activity.getPackageName()));
+                activity.startActivity(intent);
+            }
+        });
     }
 }
