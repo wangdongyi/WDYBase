@@ -37,8 +37,15 @@ public class DialogUtil {
             assert win != null;
             win.getDecorView().setPadding(0, 0, 0, 0);
             WindowManager.LayoutParams params = win.getAttributes();
-            params.width = WindowManager.LayoutParams.MATCH_PARENT;
-            params.height = WindowManager.LayoutParams.MATCH_PARENT;
+            int w = CodeUtil.getScreenWidth(mContext);
+            int h = CodeUtil.getScreenHeight(mContext);
+            if (w < h) {
+                params.width = w;
+                params.height = h;
+            } else {
+                params.width = h;
+                params.height = w;
+            }
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             params.y = CodeUtil.getScreenHeight(mContext);
             win.setAttributes(params);
@@ -58,8 +65,15 @@ public class DialogUtil {
             assert win != null;
             win.getDecorView().setPadding(0, 0, 0, 0);
             WindowManager.LayoutParams params = win.getAttributes();
-            params.width = WindowManager.LayoutParams.MATCH_PARENT;
-            params.height = WindowManager.LayoutParams.MATCH_PARENT;
+            int w = CodeUtil.getScreenWidth(mContext);
+            int h = CodeUtil.getScreenHeight(mContext);
+            if (w < h) {
+                params.width = w;
+                params.height = h;
+            } else {
+                params.width = h;
+                params.height = w;
+            }
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             params.y = CodeUtil.getScreenHeight(mContext);
             win.setAttributes(params);
