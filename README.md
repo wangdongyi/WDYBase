@@ -52,3 +52,11 @@ List<String> pList = new ArrayList<>();
                 });
             }
         });
+```
+## 下载apk并安装
+```
+  Intent intentDownload = new Intent(MainActivity.this, WDYDownloadService.class);
+  intentDownload.putExtra("downloadUrl", url);
+  intentDownload.putExtra("downloadAppName", "zhitou_all_release_3_4_0.apk");
+  startService(intentDownload);
+```
