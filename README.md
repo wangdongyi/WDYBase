@@ -55,8 +55,8 @@ List<String> pList = new ArrayList<>();
 ```
 ## 下载apk并安装
 ```
-   Intent intentOne = new Intent(mContext, WDYDownloadService.class);
-   intentOne.putExtra("downloadUrl", url);
-   intentOne.putExtra("downloadAppName", StringUtils.isApkUrlName(url));
-   mContext.startService(intentOne);
+  Intent intentDownload = new Intent(MainActivity.this, WDYDownloadService.class);
+  intentDownload.putExtra("downloadUrl", url);
+  intentDownload.putExtra("downloadAppName", "zhitou_all_release_3_4_0.apk");
+  startService(intentDownload);
 ```
