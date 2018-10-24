@@ -14,8 +14,10 @@ import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
 import com.wdy.base.module.dialog.DialogUtil;
+import com.wdy.base.module.download.WDYDownloadService;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.permission.PMUtil;
+import com.wdy.base.module.util.CodeUtil;
 import com.wdy.base.module.view.adresse.AddressPickerView;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import java.util.List;
 
 
 public class MainActivity extends WDYBaseActivity {
-
+private String url="https://lcoriginal.s3.cn-north-1.amazonaws.com.cn/4454ffde-e010-4368-863c-fc14b5e37aad?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAOYYVHPTPAKZAWURQ%2F20181024%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20181024T034213Z&X-Amz-Expires=3600&X-Amz-Signature=be634f69fa02194eb9f39e6a81b29855326074436932fa6ee09f58f78605945b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3Dutf-8%27%27zhitou_all_release_3_4_0.apk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,10 @@ public class MainActivity extends WDYBaseActivity {
         DialogMUtil.getInstance().with(this, "提示", "这是一个Material风格的提示框", new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
+                Intent intentDownload = new Intent(MainActivity.this, WDYDownloadService.class);
+                intentDownload.putExtra("downloadUrl", url);
+                intentDownload.putExtra("downloadAppName", "zhitou_all_release_3_4_0.apk");
+                startService(intentDownload);
                 DialogMUtil.Dismiss();
             }
         });

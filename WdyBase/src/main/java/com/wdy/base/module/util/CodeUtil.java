@@ -495,4 +495,15 @@ public class CodeUtil {
         Matcher m = p.matcher(string);
         return m.find();
     }
+    public static String isApkUrlName(String url) {
+        String apkName = "";
+        try {
+            String[] str1 = url.split("\\?");
+            String[] str2=str1[0].split("/");
+            apkName=str2[str2.length-1];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return apkName;
+    }
 }
