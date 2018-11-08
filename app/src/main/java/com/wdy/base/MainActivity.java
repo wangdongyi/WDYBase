@@ -60,7 +60,7 @@ private String url="https://lcoriginal.s3.cn-north-1.amazonaws.com.cn/4454ffde-e
     }
 
     public void mDialog(View view) {
-        DialogMUtil.getInstance().with(this, "提示", "这是一个Material风格的提示框", new NoDoubleClickListener() {
+        DialogMUtil.getInstance().with(this, "提示", "这是一个Material风格的提示框，点击确定下载。", new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
                 Intent intentDownload = new Intent(MainActivity.this, WDYDownloadService.class);
