@@ -17,7 +17,6 @@ import com.wdy.base.module.dialog.DialogUtil;
 import com.wdy.base.module.download.WDYDownloadService;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.permission.PMUtil;
-import com.wdy.base.module.util.CodeUtil;
 import com.wdy.base.module.view.adresse.AddressPickerView;
 
 import java.util.ArrayList;
