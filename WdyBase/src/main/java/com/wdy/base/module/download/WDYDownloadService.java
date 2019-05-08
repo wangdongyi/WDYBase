@@ -14,7 +14,10 @@ import android.os.IBinder;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 作者：王东一
@@ -35,7 +38,7 @@ public class WDYDownloadService extends Service {
     private DownloadCompleteReceiver receiver;
     private String url = "";
     private String appName = "";
-    private String DOWNLOAD_PATH = "/download/";//下载路径，如果不定义自己的路径，6.0的手机不自动安装
+    private String DOWNLOAD_PATH = "/mnt/internal_sd/zmeng/";//下载路径，如果不定义自己的路径，6.0的手机不自动安装
 
     /**
      * 初始化下载器
@@ -108,7 +111,9 @@ public class WDYDownloadService extends Service {
                 long downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 if (manager.getUriForDownloadedFile(downId) != null) {
                     //自动安装apk
-                    installAPK(context, downId);
+//                    installAPK(context, downId);
+                    Uri downloadFileUri = manager.getUriForDownloadedFile(downId);
+                    installApk(downloadFileUri.getPath());
                 }
                 //停止服务并关闭广播
                 WDYDownloadService.this.stopSelf();
@@ -177,5 +182,38 @@ public class WDYDownloadService extends Service {
         String var3 = var2.substring(var2.lastIndexOf(".") + 1, var2.length()).toLowerCase();
         var1 = MimeTypeMap.getSingleton().getMimeTypeFromExtension(var3);
         return var1;
+    }
+
+    public static String execCommand(String... command) {
+        Process process = null;
+        InputStream errIs = null;
+        InputStream inIs = null;
+        String result = "";
+        try {
+            process = new ProcessBuilder().command(command).start();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int read = -1;
+            errIs = process.getErrorStream();
+            while ((read = errIs.read()) != -1) {
+                baos.write(read);
+            }
+            inIs = process.getInputStream();
+            while ((read = inIs.read()) != -1) {
+                baos.write(read);
+            }
+            result = new String(baos.toByteArray());
+            inIs.close();
+            errIs.close();
+            process.destroy();
+        } catch (IOException e) {
+            Log.e("安装", e.getLocalizedMessage());
+            result = e.getMessage();
+        }
+        return result;
+    }
+
+    public static void installApk(String filePath) {
+        Log.e("静默安装开始", filePath);
+        execCommand("pm", "install", "-r", filePath);
     }
 }

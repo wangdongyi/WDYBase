@@ -14,15 +14,5 @@
         <service
             android:name=".download.WDYDownloadService"
             android:exported="false" />
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/wdy_file_path" />
-        </provider>
-
     </application>
 </manifest>
