@@ -4,43 +4,34 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
+import com.wdy.base.module.http.WDYHttpBase;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,7 +70,17 @@ public class MainActivity extends AppCompatActivity {
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         listener = new OrientationSensorListener(handler);
         sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+        WDYHttpBase.getInstance().getEasyAsyncHttp("url", new WDYHttpBase.OnWDYEasyHttpCallback() {
+            @Override
+            public void onFailure(IOException e) {
 
+            }
+
+            @Override
+            public void onResponse(Object response, String json) {
+
+            }
+        });
 //        String extension = MimeTypeMap.getFileExtensionFromUrl(urlVideo);
 //        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 //        Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
