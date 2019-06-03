@@ -147,11 +147,7 @@ public class PhotoUtils {
         photoInput.setMax(maxNum);
         PhotoPickerActivity.setOnPhotoBack(onPhotoBack);
         intent.putExtra("PhotoInput", photoInput);
-//        intent.putExtra(PhotoPickerActivity.EXTRA_SHOW_CAMERA, isShowCamera);//是否显示相机
-//        intent.putExtra(PhotoPickerActivity.EXTRA_SELECT_MODE, MODE);//单选多选
-//        intent.putExtra(PhotoPickerActivity.EXTRA_MAX_MUN, maxNum);//最多张数
         mContext.startActivity(intent);
-//        ((Activity) mContext).startActivityForResult(intent, REQUEST_CODE_LOAD_IMAGE);
     }
 
     //图片选取返回
