@@ -406,7 +406,19 @@ public class CodeUtil {
         return "";
 
     }
-
+    /**
+     * 判断SD卡是否存在
+     *
+     * @param context
+     * @return
+     */
+    public static Boolean getSDStatus(Context context) {
+        String SDStatus = Environment.getExternalStorageState();
+        if (!SDStatus.equals(Environment.MEDIA_MOUNTED)) {
+            return false;
+        }
+        return true;
+    }
 
     //身份证校验
     public static boolean isCardNum(String s) {

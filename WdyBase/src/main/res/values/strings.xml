@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WDYBase</string>
     <string name="sure">确定</string>
+    <string name="picker_all_image">所有图片</string>
+    <string name="picker_msg_maxi_capacity">已达到照片选择上限</string>
+    <string name="picker_photos_num">%1$d张</string>
+    <string name="picker_msg_no_camera">没找到摄像头</string>
 </resources>

@@ -26,9 +26,9 @@
     <!--标题文字颜色-->
     <color name="title_textColor">#292d30</color>
     <!--标题颜色-->
-    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimary">#000000</color>
     <!--状态栏颜色-->
-    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorPrimaryDark">#000000</color>
     <!--控件颜色-->
     <color name="colorAccent">#ffffff</color>
     <!--标题栏控件颜色-->

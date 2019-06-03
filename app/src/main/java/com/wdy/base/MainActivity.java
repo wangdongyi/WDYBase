@@ -28,6 +28,8 @@ import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
 import com.wdy.base.module.http.WDYHttpBase;
 import com.wdy.base.module.listen.NoDoubleClickListener;
+import com.wdy.base.module.photopicker.PhotoPickerActivity;
+import com.wdy.base.module.photopicker.utils.PhotoUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -70,17 +72,17 @@ public class MainActivity extends AppCompatActivity {
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         listener = new OrientationSensorListener(handler);
         sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
-        WDYHttpBase.getInstance().getEasyAsyncHttp("url", new WDYHttpBase.OnWDYEasyHttpCallback() {
-            @Override
-            public void onFailure(IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Object response, String json) {
-
-            }
-        });
+//        WDYHttpBase.getInstance().getEasyAsyncHttp("url", new WDYHttpBase.OnWDYEasyHttpCallback() {
+//            @Override
+//            public void onFailure(IOException e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Object response, String json) {
+//
+//            }
+//        });
 //        String extension = MimeTypeMap.getFileExtensionFromUrl(urlVideo);
 //        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 //        Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
@@ -186,10 +188,17 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         // 从Url中下载  下载至 Environment.getExternalStorageDirectory() 目录的update.apk文件 并安装
 //                        execLinuxCommand();
-                        clientInstall("/mnt/internal_sd/bluetooth/test.apk");
+//                        clientInstall("/mnt/internal_sd/bluetooth/test.apk");
 //                        excuteSuCMD("/mnt/internal_sd/Android/data/com.wdy.base/files/Download/app.apk");
                     }
                 }).start();
+                PhotoUtils.showPhotoIntent(MainActivity.this, false, 0, 6, new PhotoUtils.OnPhotoBack() {
+                    @Override
+                    public void onBack(ArrayList<String> result) {
+                        Log.e("图片返回",result.size()+"");
+                    }
+                });
+
                 DialogMUtil.Dismiss();
             }
         });
@@ -288,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     private void change() {
         point++;
         if (point >= list.size()) {
@@ -514,6 +524,11 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         videoplayer = (JZVideoPlayerStandardLoopVideo) findViewById(R.id.videoplayer);
         image = (ImageView) findViewById(R.id.image);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
