@@ -1,11 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
+    //修改后
     repositories {
-        google()
-        jcenter()
+        maven {
+            url "https://maven.aliyun.com/repository/google"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/jcenter"
+        }
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
         
@@ -16,12 +22,23 @@ buildscript {
 }
 
 allprojects {
+    //修改后
     repositories {
-        google()
-        jcenter()
-        maven { url "https://jitpack.io" }
+        maven {
+            url "https://maven.aliyun.com/repository/google"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/jcenter"
+        }
+        maven {
+            //需要什么仓库自己添加...
+            url "https://jitpack.io"
+        }
     }
+
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

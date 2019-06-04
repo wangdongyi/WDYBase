@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wdy.base.module.view.refresh.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/wdy_recyclerView_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/load"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/load"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/transparent"
+            android:clipChildren="false"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.wdy.base.module.view.refresh.LoadingView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:loadingColor="@color/blue" />
+        </LinearLayout>
+    </RelativeLayout>
+</com.wdy.base.module.view.refresh.RefreshLayout>

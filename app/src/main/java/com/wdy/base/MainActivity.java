@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 //                        excuteSuCMD("/mnt/internal_sd/Android/data/com.wdy.base/files/Download/app.apk");
                     }
                 }).start();
-                PhotoUtils.showPhotoIntent(MainActivity.this, false, 0, 6, new PhotoUtils.OnPhotoBack() {
+                PhotoUtils.showPhotoIntent(MainActivity.this, false, 1, 6, new PhotoUtils.OnPhotoBack() {
                     @Override
                     public void onBack(ArrayList<String> result) {
                         Log.e("图片返回",result.size()+"");
