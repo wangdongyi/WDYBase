@@ -1,5 +1,7 @@
 # WDYBase
 [![](https://jitpack.io/v/wangdongyi/WDYBase.svg)](https://jitpack.io/#wangdongyi/WDYBase)
+代码远程仓库 maven { url "https://raw.githubusercontent.com/wangdongyi/WDYBaseMeaven/master" }
+implementation 'com.wdy.base.module:WDYBase:1.2.5'
 我的基础包
 ## 权限调用
 ```
