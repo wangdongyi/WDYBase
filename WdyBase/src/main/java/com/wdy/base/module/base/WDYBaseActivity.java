@@ -1,5 +1,7 @@
 package com.wdy.base.module.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.wdy.base.module.listen.WDYKeyboardShow;
+import com.wdy.base.module.status.StatusBarUtil;
 import com.wdy.base.module.util.ActivityManage;
 import com.wdy.base.module.util.CodeUtil;
 
@@ -55,6 +58,10 @@ public class WDYBaseActivity extends AppCompatActivity {
 
     public void setWdyKeyboardShow(WDYKeyboardShow wdyKeyboardShow) {
         this.wdyKeyboardShow = wdyKeyboardShow;
+    }
+
+    protected Activity getActivity() {
+        return this;
     }
 
     /**
