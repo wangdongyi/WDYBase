@@ -14,6 +14,7 @@ import com.wdy.base.module.listen.WDYKeyboardShow;
 import com.wdy.base.module.status.StatusBarUtil;
 import com.wdy.base.module.util.ActivityManage;
 import com.wdy.base.module.util.CodeUtil;
+import com.wdy.base.module.util.ToastUtil;
 
 /**
  * 作者：王东一
@@ -60,8 +61,16 @@ public class WDYBaseActivity extends AppCompatActivity {
         this.wdyKeyboardShow = wdyKeyboardShow;
     }
 
+    protected void showToast(String content) {
+        ToastUtil.getToast(getActivity()).showMiddleToast(content);
+    }
+
     protected Activity getActivity() {
         return this;
+    }
+
+    protected void isHomeActivity(){
+
     }
 
     /**

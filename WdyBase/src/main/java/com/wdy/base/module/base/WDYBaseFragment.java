@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.wdy.base.module.util.ToastUtil;
+
 /**
  * 作者：王东一
  * 创建时间：2019-05-14.
@@ -26,13 +28,11 @@ public abstract class WDYBaseFragment extends Fragment {
     }
 
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         wdyContext = context;
     }
-
 
 
     @Override
@@ -48,6 +48,10 @@ public abstract class WDYBaseFragment extends Fragment {
                 lazyLoad();
             }
         }
+    }
+
+    protected void showToast(String content) {
+        ToastUtil.getToast(wdyContext).showMiddleToast(content);
     }
 
     //初始化代码

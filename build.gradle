@@ -34,6 +34,8 @@ allprojects {
             //需要什么仓库自己添加...
             url "https://jitpack.io"
         }
+
+        maven { url 'https://dl.bintray.com/magnusja/maven' }
     }
 
 }

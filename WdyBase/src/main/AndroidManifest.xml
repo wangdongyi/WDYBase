@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <application android:name=".base.WDYBaseApp">
+    <application>
         <!--图片选择界面-->
         <activity
             android:name=".photopicker.PhotoPickerActivity"
@@ -20,7 +20,6 @@
             android:theme="@style/WDYAppTheme"
             android:windowSoftInputMode="stateHidden|adjustUnspecified" />
         <service
-            android:name=".download.WDYDownloadService"
-            android:exported="false" />
+            android:name=".download.WDYDownloadService" />
     </application>
 </manifest>
