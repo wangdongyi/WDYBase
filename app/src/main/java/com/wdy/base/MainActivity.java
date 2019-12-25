@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -26,10 +27,9 @@ import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
-import com.wdy.base.module.http.WDYHttpBase;
 import com.wdy.base.module.listen.NoDoubleClickListener;
-import com.wdy.base.module.photopicker.PhotoPickerActivity;
 import com.wdy.base.module.photopicker.utils.PhotoUtils;
+import com.wdy.base.module.view.banner.BannerView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -41,6 +41,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.jzvd.Jzvd;
 
@@ -60,18 +61,19 @@ public class MainActivity extends AppCompatActivity {
     private Sensor sensor;
     private ZMImagePlay zmImagePlay;
     private ImageView image;
+    private BannerView banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        handler = new ChangeOrientationHandler(this);
+//        handler = new ChangeOrientationHandler(this);
 //
-        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        listener = new OrientationSensorListener(handler);
-        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+//        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//        sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+//        listener = new OrientationSensorListener(handler);
+//        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
 //        WDYHttpBase.getInstance().getEasyAsyncHttp("url", new WDYHttpBase.OnWDYEasyHttpCallback() {
 //            @Override
 //            public void onFailure(IOException e) {
@@ -138,8 +140,9 @@ public class MainActivity extends AppCompatActivity {
 //                excuteSuCMD("/mnt/internal_sd/Android/data/com.wdy.base/files/Download/app.apk");
 //            }
 //        }, 5000);
-        playVideo();
+//        playVideo();
 //        playImage();
+
     }
 
     @Override
@@ -152,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        sm.unregisterListener(listener);
+//        sm.unregisterListener(listener);
         super.onPause();
         Jzvd.releaseAllVideos();
     }
 
     @Override
     protected void onResume() {
-        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+//        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
         super.onResume();
     }
 
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 PhotoUtils.showPhotoIntent(MainActivity.this, false, 1, 6, new PhotoUtils.OnPhotoBack() {
                     @Override
                     public void onBack(ArrayList<String> result) {
-                        Log.e("图片返回",result.size()+"");
+                        Log.e("图片返回", result.size() + "");
                     }
                 });
 
@@ -277,10 +280,10 @@ public class MainActivity extends AppCompatActivity {
                         zmImagePlay.initTimer(10);
                     }
                 };
-                GlideApp.with(MainActivity.this)
-                        .load(listImage.get(pointImage))
-                        .centerCrop()
-                        .into(simpleTarget);
+//                GlideApp.with(MainActivity.this)
+//                        .load(listImage.get(pointImage))
+//                        .centerCrop()
+//                        .into(simpleTarget);
             }
         });
         SimpleTarget<Drawable> simpleTarget = new SimpleTarget<Drawable>() {
@@ -290,10 +293,10 @@ public class MainActivity extends AppCompatActivity {
                 zmImagePlay.initTimer(10);
             }
         };
-        GlideApp.with(this)
-                .load(listImage.get(0))
-                .centerCrop()
-                .into(simpleTarget);
+//        GlideApp.with(this)
+//                .load(listImage.get(0))
+//                .centerCrop()
+//                .into(simpleTarget);
 
 
     }
@@ -367,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        Glide.with(context).load(uri).apply(requestOptions).into(imageView);
+//        Glide.with(context).load(uri).apply(requestOptions).into(imageView);
     }
 
     public void successDialog(View view) {
@@ -522,8 +525,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        videoplayer = (JZVideoPlayerStandardLoopVideo) findViewById(R.id.videoplayer);
+//        videoplayer = (JZVideoPlayerStandardLoopVideo) findViewById(R.id.videoplayer);
         image = (ImageView) findViewById(R.id.image);
+//        image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                installApk(MainActivity.this, "/storage/emulated/0/aaa.apk");
+//            }
+//        });
+        banner = (BannerView) findViewById(R.id.banner);
+        List<String> list=new ArrayList<>();
+        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266783066&di=bb87ead1acb234334154ae8b4b03591f&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20170504%2F20170504155016_6e0cc63978e7c7fc4f1cf86a3b5e1105_10.jpeg");
+        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266783066&di=cdd58bbe3b1a0537e56da6dcb56388ae&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20161229%2F20161229162534_4aac2e058d25668a3b64dfcebcbd8ef4_7.jpeg");
+        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266847193&di=1686bac8d5489ca2d8f840b1dd15039a&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201404%2F30%2F20140430131645_fVF3e.jpeg");
+        banner.init(list);
+    }
+
+    public void installApk(Context context, String apkpath) {
+        Log.d("qhj", "TestAppota MainActivity-->installApk---apkpath:" + apkpath);
+        Intent it = new Intent(Intent.ACTION_VIEW);
+        it.setDataAndType(Uri.parse("file://" + apkpath), "application/vnd.android.package-archive");
+        // todo 针对不同的手机 以及 sdk 版本, 这里的 uri 地址可能有所不同
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(it);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.wdy.base;
 
-import com.udisk.lib.UsbSdk;
 import com.wdy.base.module.base.WDYBaseApp;
 
 /**
@@ -11,6 +10,5 @@ public class AppApplication extends WDYBaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        UsbSdk.init(this);
     }
 }

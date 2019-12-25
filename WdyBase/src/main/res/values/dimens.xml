@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_text_size_large">22sp</dimen>
+    <dimen name="default_text_size_big_mall">20sp</dimen>
+    <dimen name="default_text_size_big">18sp</dimen>
+    <dimen name="default_text_size">16sp</dimen>
+    <dimen name="default_text_size_small">14sp</dimen>
+    <dimen name="default_text_size_little">12sp</dimen>
+    <dimen name="default_text_size_little_small">10sp</dimen>
+    <dimen name="padding">15dp</dimen>
+    <dimen name="detail_backdrop_height">200dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_avatar_size">40dp</dimen>
+</resources>
