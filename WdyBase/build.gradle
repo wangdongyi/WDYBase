@@ -45,7 +45,7 @@ uploadArchives {
         pom.project {
             groupId "com.wdy.base.module" // 可以随意取，一般取包名
             artifactId "WDYBase" // 可以随意取，一般取库的名字
-            version "1.2.6" // 版本号
+            version "1.2.7" // 版本号
         }
     }
 }
