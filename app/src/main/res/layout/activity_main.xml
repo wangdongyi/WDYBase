@@ -20,6 +20,16 @@
         android:orientation="vertical"
         android:visibility="visible">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/text_dark_gray"
+            android:gravity="center"
+            android:onClick="moveRefreshTest"
+            android:text="测试下拉刷新"
+            android:textColor="@color/white" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,4 +99,6 @@
         android:background="@color/colorAccent"
         android:scaleType="centerCrop"
         android:visibility="gone" />
+
+
 </RelativeLayout>

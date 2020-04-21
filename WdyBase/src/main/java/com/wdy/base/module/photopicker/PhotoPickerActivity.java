@@ -9,22 +9,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.wdy.base.module.R;
 import com.wdy.base.module.base.WDYBaseActivity;
-import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.listen.OnRecyclerClickListen;
 import com.wdy.base.module.permission.PMUtil;
@@ -433,6 +432,7 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 相机拍照完成后，返回图片路径
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
             return;
         }

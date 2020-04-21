@@ -11,18 +11,19 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.wdy.base.activity.RefreshActivity;
 import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
+//        initView();
 //        handler = new ChangeOrientationHandler(this);
 //
 //        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -525,20 +526,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-//        videoplayer = (JZVideoPlayerStandardLoopVideo) findViewById(R.id.videoplayer);
         image = (ImageView) findViewById(R.id.image);
-//        image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                installApk(MainActivity.this, "/storage/emulated/0/aaa.apk");
-//            }
-//        });
         banner = (BannerView) findViewById(R.id.banner);
-        List<String> list=new ArrayList<>();
-        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266783066&di=bb87ead1acb234334154ae8b4b03591f&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20170504%2F20170504155016_6e0cc63978e7c7fc4f1cf86a3b5e1105_10.jpeg");
-        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266783066&di=cdd58bbe3b1a0537e56da6dcb56388ae&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20161229%2F20161229162534_4aac2e058d25668a3b64dfcebcbd8ef4_7.jpeg");
-        list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577266847193&di=1686bac8d5489ca2d8f840b1dd15039a&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201404%2F30%2F20140430131645_fVF3e.jpeg");
-        banner.init(list);
     }
 
     public void installApk(Context context, String apkpath) {
@@ -609,5 +598,9 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public void moveRefreshTest(View view) {
+        Intent intent = new Intent(MainActivity.this, RefreshActivity.class);
+        startActivity(intent);
+    }
 
 }

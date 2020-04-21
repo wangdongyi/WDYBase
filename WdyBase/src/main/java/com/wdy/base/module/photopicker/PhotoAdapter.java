@@ -2,13 +2,15 @@ package com.wdy.base.module.photopicker;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wdy.base.module.R;
@@ -78,8 +80,9 @@ public class PhotoAdapter extends RecyclerView.Adapter {
     }
 
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         ViewHolder viewHolder = null;
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(mWidth, mWidth);
@@ -100,7 +103,7 @@ public class PhotoAdapter extends RecyclerView.Adapter {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         switch (getItemViewType(position)) {
             case TYPE_CAMERA:

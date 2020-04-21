@@ -2,10 +2,13 @@ package com.wdy.base.module.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.wdy.base.module.util.ToastUtil;
 
@@ -18,54 +21,76 @@ public abstract class WDYBaseFragment extends Fragment {
     protected boolean isViewShown = false;
     protected View main;
     protected boolean isBuild = false;
-    protected Context wdyContext;
-    protected Bundle savedInstanceState;
+    protected Context WDYContext;
+    private boolean isFirstLoad = true; // 是否第一次加载
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        WDYContext = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.savedInstanceState = savedInstanceState;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = LayoutInflater.from(WDYContext).inflate(getContentViewId(), null);
+        initView(view);
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isFirstLoad) {
+            // 将数据加载逻辑放到onResume()方法中
+            initData();
+            isFirstLoad = false;
+        }
+    }
+
+    /**
+     * 设置布局资源id
+     *
+     * @return layout
+     */
+    protected abstract int getContentViewId();
+
+    /**
+     * 初始化视图
+     *
+     * @param view 父
+     */
+    protected void initView(View view) {
+
+    }
+
+    /**
+     * 初始化数据
+     */
+    protected void initData() {
+
+    }
+
+
+    protected void showToast(String content) {
+        ToastUtil.getToast(WDYContext).showMiddleToast(content);
     }
 
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        wdyContext = context;
+    public void onDestroyView() {
+        super.onDestroyView();
+        isFirstLoad = true;
     }
-
 
     @Override
     public void onDetach() {
         super.onDetach();
-        wdyContext = null;
-    }
-
-    protected void setContentView(LayoutInflater inflater, int layoutResID) {
-        if (main == null) {
-            this.main = inflater.inflate(layoutResID, null);
-            if (!isViewShown && !isBuild) {
-                lazyLoad();
-            }
-        }
-    }
-
-    protected void showToast(String content) {
-        ToastUtil.getToast(wdyContext).showMiddleToast(content);
-    }
-
-    //初始化代码
-    protected abstract void init();
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        isViewShown = null != getView();
-    }
-
-
-    protected void lazyLoad() {
-        isBuild = true;
-        init();
+        WDYContext = null;
     }
 }

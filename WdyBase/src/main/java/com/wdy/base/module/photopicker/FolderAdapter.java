@@ -2,13 +2,15 @@ package com.wdy.base.module.photopicker;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wdy.base.module.R;
@@ -45,8 +47,9 @@ public class FolderAdapter extends RecyclerView.Adapter {
 
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         ViewHolder viewHolder = null;
         view = LayoutInflater.from(mContext).inflate(R.layout.picker_item_floder_layout, parent, false);
@@ -56,7 +59,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
 
     @SuppressLint({"RecyclerView", "SetTextI18n"})
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.selectIV.setVisibility(View.GONE);
         viewHolder.photoIV.setImageResource(R.mipmap.default_picture);

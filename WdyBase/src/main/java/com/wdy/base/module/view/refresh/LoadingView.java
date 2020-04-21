@@ -7,13 +7,14 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.wdy.base.module.R;
 import com.wdy.base.module.util.CodeUtil;
@@ -29,7 +30,7 @@ public class LoadingView extends View {
     private float radius = CodeUtil.dip2px(getContext(), 7);
     private final int ITEM_COUNT = 5;
     private final int ITEM_DIVIDER = CodeUtil.dip2px(getContext(), 10);
-    private final float SCALE_RATE = 0.3f;
+    private final float SCALE_RATE = 0.4f;
     private float maxLength;
     private ArrayList<Circle> circlePaths = new ArrayList<>();
     private float mInterpolatedTime;
@@ -60,7 +61,7 @@ public class LoadingView extends View {
             return;
         }
         try {
-            LoadingColor = attr.getColor(R.styleable.LoadingView_loadingColor, ContextCompat.getColor(context,R.color.top_color));
+            LoadingColor = attr.getColor(R.styleable.LoadingView_loadingColor, ContextCompat.getColor(context, R.color.top_color));
         } finally {
             attr.recycle();
         }
@@ -80,6 +81,12 @@ public class LoadingView extends View {
         invalidate();
     }
 
+    public void setPaintColor(int color) {
+        LoadingColor = color;
+        paint.setColor(LoadingColor);
+        invalidate();
+    }
+
     private void init() {
         paint.setColor(LoadingColor);
         paint.setStyle(Paint.Style.FILL);
@@ -91,7 +98,7 @@ public class LoadingView extends View {
 
         for (int i = 1; i < ITEM_COUNT; i++) {
             circlePath = new Circle();
-            circlePath.center = new float[]{(radius * 2 + ITEM_DIVIDER) * i, radius * (1f + SCALE_RATE)};
+            circlePath.center = new float[]{(radius * 2+radius/2 + ITEM_DIVIDER) * i, radius * (1f + SCALE_RATE)};
             circlePath.radius = radius;
             circlePaths.add(circlePath);
         }
@@ -121,7 +128,7 @@ public class LoadingView extends View {
      * param j
      * param i
      * param v               控制两个圆连接时候长度，间接控制连接线的粗细，该值为1的时候连接线为直线
-     * param handle_len_rate
+     * param handle_len_rate 中间线的粗细
      * param maxDistance
      */
     private void metaball(Canvas canvas, int j, int i, float v, float handle_len_rate, float maxDistance) {
@@ -273,7 +280,7 @@ public class LoadingView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Circle circle = circlePaths.get(0);
-        circle.center[0] = maxLength * mInterpolatedTime;
+        circle.center[0] = maxLength * mInterpolatedTime + radius;
 
         @SuppressLint("DrawAllocation") RectF ball1 = new RectF();
         ball1.left = circle.center[0] - circle.radius;
@@ -284,14 +291,14 @@ public class LoadingView extends View {
 
 
         for (int i = 1, l = circlePaths.size(); i < l; i++) {
-            float handle_len_rate = 2f;
+            float handle_len_rate = 2.0f;
             metaball(canvas, i, 0, 0.6f, handle_len_rate, radius * 4f);
         }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(resolveSizeAndState((int) (ITEM_COUNT * (radius * 2 + ITEM_DIVIDER)), widthMeasureSpec, 0),
+        setMeasuredDimension((int) (resolveSizeAndState((int) (ITEM_COUNT * (radius * 2 + ITEM_DIVIDER)), widthMeasureSpec, 0) + radius * 2),
                 resolveSizeAndState((int) (2 * radius * 1.4f), heightMeasureSpec, 0));
     }
 
