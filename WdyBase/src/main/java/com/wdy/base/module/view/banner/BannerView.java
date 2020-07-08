@@ -80,6 +80,7 @@ public class BannerView extends FrameLayout implements Runnable, View.OnTouchLis
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
                 onTouchPager = true;
                 break;
             case MotionEvent.ACTION_UP:
