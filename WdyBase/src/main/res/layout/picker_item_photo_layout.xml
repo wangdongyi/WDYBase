@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wdy.base.module.photopicker.widgets.SquareImageView
+    <com.wdy.base.module.photoPicker.widgets.SquareImageView
         android:id="@+id/imageView_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

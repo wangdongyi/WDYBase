@@ -10,7 +10,7 @@
  *  in the file PATENTS.  All contributing project authors may
  *  be found in the AUTHORS file in the root of the source tree.
  */
-package com.wdy.base.module.photopicker.utils;
+package com.wdy.base.module.photoPicker.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -125,22 +125,19 @@ public class PMUtil {
     @SuppressLint("HandlerLeak")
     class WDYHandler extends Handler {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 2015:
-                    onPermissionBack.permissionBack(true);
+                    onPermissionBack.onPermissionsGranted();
                     break;
                 case 2016:
-                    onPermissionBack.permissionBack(false);
+                    onPermissionBack.onPermissionsDenied();
                     break;
             }
         }
     }
 
-    public interface OnPermissionBack {
-        void permissionBack(boolean grant);
-    }
 
     public void showOpenP() {
         DialogMUtil.getInstance().with(activity, "提示", "应用缺少必要的权限！请点击确定，打开所有的权限。", new NoDoubleClickListener() {

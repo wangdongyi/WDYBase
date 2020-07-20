@@ -1,4 +1,4 @@
-package com.wdy.base.module.photopicker.model;
+package com.wdy.base.module.photoPicker.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

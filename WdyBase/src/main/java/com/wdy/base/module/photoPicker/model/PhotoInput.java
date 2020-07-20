@@ -1,6 +1,6 @@
-package com.wdy.base.module.photopicker.model;
+package com.wdy.base.module.photoPicker.model;
 
-import com.wdy.base.module.photopicker.utils.PhotoUtils;
+import com.wdy.base.module.photoPicker.utils.PhotoUtils;
 
 import java.io.Serializable;
 

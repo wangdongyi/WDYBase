@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.wdy.base.module.permission.PermissionUtils;
 import com.wdy.base.module.util.ToastUtil;
 
 /**
@@ -81,6 +82,21 @@ public abstract class WDYBaseFragment extends Fragment {
         ToastUtil.getToast(WDYContext).showMiddleToast(content);
     }
 
+    /**
+     * 动态申请权限
+     *
+     * @param permissions 要申请的权限
+     * @param grant       权限申请的回掉
+     */
+    public void getPermissions(String[] permissions, PermissionUtils.PermissionGrant grant) {
+        PermissionUtils.requestMultiPermissionsAll(getActivity(), permissions, grant);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionUtils.requestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
     @Override
     public void onDestroyView() {

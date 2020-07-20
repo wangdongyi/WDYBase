@@ -1,11 +1,11 @@
-package com.wdy.base.module.photopicker.widgets;
+package com.wdy.base.module.photoPicker.widgets;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.wdy.base.module.photopicker.utils.PhotoUtils;
+import com.wdy.base.module.photoPicker.utils.PhotoUtils;
 
 /**
  * 作者：王东一

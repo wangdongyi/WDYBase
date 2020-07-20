@@ -1,5 +1,6 @@
 package com.wdy.base;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -24,12 +25,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.wdy.base.activity.RefreshActivity;
+import com.wdy.base.module.base.WDYBaseActivity;
 import com.wdy.base.module.dialog.DialogFailed;
 import com.wdy.base.module.dialog.DialogMUtil;
 import com.wdy.base.module.dialog.DialogSinge;
 import com.wdy.base.module.dialog.DialogSuccess;
 import com.wdy.base.module.listen.NoDoubleClickListener;
-import com.wdy.base.module.photopicker.utils.PhotoUtils;
+import com.wdy.base.module.permission.PermissionUtils;
+import com.wdy.base.module.photoPicker.utils.PhotoUtils;
 import com.wdy.base.module.view.banner.BannerView;
 
 import java.io.ByteArrayOutputStream;
@@ -42,14 +45,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.ArrayList;
-import java.util.List;
 
 import cn.jzvd.Jzvd;
 
 import static com.bumptech.glide.load.resource.bitmap.VideoDecoder.FRAME_OPTION;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends WDYBaseActivity {
     public final static String TAG = "WDY";
     private String url = "http://oss-cn-hangzhou.aliyuncs.com/zm-static/product-download/zhitou_all_develop_3_7_104.apk";
     private int x, y;
@@ -196,10 +198,17 @@ public class MainActivity extends AppCompatActivity {
 //                        excuteSuCMD("/mnt/internal_sd/Android/data/com.wdy.base/files/Download/app.apk");
                     }
                 }).start();
-                PhotoUtils.showPhotoIntent(MainActivity.this, false, 1, 6, new PhotoUtils.OnPhotoBack() {
+                getPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA}, new PermissionUtils.PermissionGrant() {
                     @Override
-                    public void onBack(ArrayList<String> result) {
-                        Log.e("图片返回", result.size() + "");
+                    public void onPermissionGranted() {
+                        PhotoUtils.showPhotoIntent(MainActivity.this, true, 1, 6, result -> Log.e(
+                                "图片返回", result.size() + ""));
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(String[] permissions, int[] grantResults) {
+                        Log.e("权限返回", "失败"+permissions);
                     }
                 });
 
@@ -383,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void DialogAddress(View view) {
-
+        PhotoUtils.showPhotoIntent(this, true, 0, 1, result -> Log.e("图片返回：", result.size() + "路径：" + result.get(0)));
     }
 
     private void backHome() {

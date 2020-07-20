@@ -1,14 +1,16 @@
-package com.wdy.base.module.photopicker;
+package com.wdy.base.module.photoPicker;
 
 import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -27,12 +30,13 @@ import com.wdy.base.module.base.WDYBaseActivity;
 import com.wdy.base.module.listen.NoDoubleClickListener;
 import com.wdy.base.module.listen.OnRecyclerClickListen;
 import com.wdy.base.module.permission.PMUtil;
-import com.wdy.base.module.photopicker.model.Photo;
-import com.wdy.base.module.photopicker.model.PhotoDirectory;
-import com.wdy.base.module.photopicker.model.PhotoInput;
-import com.wdy.base.module.photopicker.utils.ItemDivider;
-import com.wdy.base.module.photopicker.utils.MediaStoreHelper;
-import com.wdy.base.module.photopicker.utils.PhotoUtils;
+import com.wdy.base.module.permission.PermissionUtils;
+import com.wdy.base.module.photoPicker.model.Photo;
+import com.wdy.base.module.photoPicker.model.PhotoDirectory;
+import com.wdy.base.module.photoPicker.model.PhotoInput;
+import com.wdy.base.module.photoPicker.utils.ItemDivider;
+import com.wdy.base.module.photoPicker.utils.MediaStoreHelper;
+import com.wdy.base.module.photoPicker.utils.PhotoUtils;
 import com.wdy.base.module.util.CodeUtil;
 import com.wdy.base.module.util.ToastUtil;
 
@@ -124,20 +128,28 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
         mSrcFolderMap = new ArrayList<>();
         initView();
         initIntentParams();
-        if (!PhotoUtils.isExternalStorageAvailable()) {
-            ToastUtil.getToast(this).showMiddleToast("没有sd卡");
-            finish();
-            return;
-        }
-        MediaStoreHelper.getPhotoDirs(this, new Bundle(), new MediaStoreHelper.PhotosResultCallback() {
+        String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+        getPermissions(permissions, new PermissionUtils.PermissionGrant() {
+            @Override
+            public void onPermissionGranted() {
+                if (!PhotoUtils.isExternalStorageAvailable()) {
+                    ToastUtil.getToast(getActivity()).showMiddleToast("没有sd卡");
+                    finish();
+                    return;
+                }
+                MediaStoreHelper.getPhotoDirs((FragmentActivity) getActivity(), new Bundle(), dirs -> {
+                    mSrcFolderMap.clear();
+                    mSrcFolderMap.addAll(dirs);
+                    getPhotosSuccess();
+                });
+            }
 
             @Override
-            public void onResultCallback(List<PhotoDirectory> dirs) {
-                mSrcFolderMap.clear();
-                mSrcFolderMap.addAll(dirs);
-                getPhotosSuccess();
+            public void onPermissionDenied(String[] permissions, int[] grantResults) {
+                Log.e("权限返回", "失败" + permissions);
             }
         });
+
     }
 
     public static PhotoUtils.OnPhotoBack getOnPhotoBack() {
@@ -154,6 +166,7 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
     private void initIntentParams() {
         PhotoInput photoInput = (PhotoInput) getIntent().getSerializableExtra("PhotoInput");
         //是否显示相机
+        assert photoInput != null;
         mIsShowCamera = photoInput.isShowCamera();
         //是否多选
         mSelectMode = photoInput.getMode();
@@ -163,16 +176,13 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
         if (mSelectMode == MODE_MULTI) {
             //如果是多选模式，需要将确定按钮初始化以及绑定事件
             mPhotoSureTV.setVisibility(View.VISIBLE);
-            mPhotoSureTV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    List<String> list = mPhotoAdapter.getSelectedPhotos();
-                    if (list != null && list.size() > 0) {
-                        mSelectList.addAll(mPhotoAdapter.getSelectedPhotos());
-                        returnData();
-                    } else {
-                        ToastUtil.getToast(PhotoPickerActivity.this).showMiddleToast("未选择图片");
-                    }
+            mPhotoSureTV.setOnClickListener(v -> {
+                List<String> list = mPhotoAdapter.getSelectedPhotos();
+                if (list != null && list.size() > 0) {
+                    mSelectList.addAll(mPhotoAdapter.getSelectedPhotos());
+                    returnData();
+                } else {
+                    ToastUtil.getToast(PhotoPickerActivity.this).showMiddleToast("未选择图片");
                 }
             });
         } else {
@@ -233,7 +243,7 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
             @Override
             public void onClick(int position) {
                 if (mPhotoAdapter.isShowCamera() && position == 0) {
-                    showCamera();
+                    openCamera();
                     return;
                 }
                 selectPhoto(mPhotoLists.get(position));
@@ -264,7 +274,7 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
      */
     private void returnData() {
         // 返回已选择的图片数据
-        if(getOnPhotoBack()!=null){
+        if (getOnPhotoBack() != null) {
             getOnPhotoBack().onBack(mSelectList);
         }
         Intent data = new Intent();
@@ -288,33 +298,29 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
             final FolderAdapter adapter = new FolderAdapter(this, folders);
             mFolderListView.setLayoutManager(new LinearLayoutManager(this));
             mFolderListView.setAdapter(adapter);
-            adapter.setOnRecyclerClickListen(new OnRecyclerClickListen() {
-                @Override
-                public void onClick(int position) {
-                    for (PhotoDirectory folder : folders) {
-                        folder.setIsSelected(false);
-                    }
-                    PhotoDirectory folder = folders.get(position);
-                    folder.setIsSelected(true);
-                    adapter.notifyDataSetChanged();
-                    mPhotoLists.clear();
-                    mPhotoLists.addAll(folder.getPhotos());
-                    if (ALL_PHOTO.equals(folder.getName())) {
-                        mPhotoAdapter.setIsShowCamera(mIsShowCamera);
-                    } else {
-                        mPhotoAdapter.setIsShowCamera(false);
-                    }
-                    //这里重新设置adapter而不是直接notifyDataSetChanged，是让GridView返回顶部
-//                    mGridView.setAdapter(mPhotoAdapter);
-                    mPhotoAdapter.notifyDataSetChanged();
-                    mPhotoNumTV.setText(PhotoUtils.formatResourceString(getApplicationContext(), R.string.picker_photos_num, mPhotoLists.size()));
-                    mPhotoNameTV.setText(folder.getName());
-                    toggle();
+            adapter.setOnRecyclerClickListen(position -> {
+                for (PhotoDirectory folder : folders) {
+                    folder.setIsSelected(false);
                 }
-
-
+                PhotoDirectory folder = folders.get(position);
+                folder.setIsSelected(true);
+                adapter.notifyDataSetChanged();
+                mPhotoLists.clear();
+                mPhotoLists.addAll(folder.getPhotos());
+                if (ALL_PHOTO.equals(folder.getName())) {
+                    mPhotoAdapter.setIsShowCamera(mIsShowCamera);
+                } else {
+                    mPhotoAdapter.setIsShowCamera(false);
+                }
+                //这里重新设置adapter而不是直接notifyDataSetChanged，是让GridView返回顶部
+//                    mGridView.setAdapter(mPhotoAdapter);
+                mPhotoAdapter.notifyDataSetChanged();
+                mPhotoNumTV.setText(PhotoUtils.formatResourceString(getApplicationContext(), R.string.picker_photos_num, mPhotoLists.size()));
+                mPhotoNameTV.setText(folder.getName());
+                toggle();
             });
             dimLayout.setOnTouchListener(new View.OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (mIsFolderViewShow) {
@@ -389,26 +395,6 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
         mPhotoAdapter.notifyDataSetChanged();
     }
 
-    /**
-     * 选择相机
-     */
-    private void showCamera() {
-        List<String> pList = new ArrayList<>();
-        pList.add(Manifest.permission.CAMERA);
-        pList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        pList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        new PMUtil(this, pList, new PMUtil.OnPermissionBack() {
-            @Override
-            public void permissionBack(boolean grant) {
-                if (grant) {
-                    // 跳转到系统照相机
-                    openCamera();
-                } else {
-                    ToastUtil.getToast(PhotoPickerActivity.this).showMiddleToast(getResources().getString(R.string.picker_msg_no_camera));
-                }
-            }
-        });
-    }
 
     private void openCamera() {
         // 判断SD卡是否存在

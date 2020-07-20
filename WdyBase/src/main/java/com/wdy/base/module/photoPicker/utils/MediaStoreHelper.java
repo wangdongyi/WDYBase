@@ -1,4 +1,4 @@
-package com.wdy.base.module.photopicker.utils;
+package com.wdy.base.module.photoPicker.utils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
 import com.wdy.base.module.R;
-import com.wdy.base.module.photopicker.model.PhotoDirectory;
+import com.wdy.base.module.photoPicker.model.PhotoDirectory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,5 @@
-package com.wdy.base.module.photopicker.utils;
+package com.wdy.base.module.photoPicker.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +8,8 @@ import android.text.TextUtils;
 
 
 import com.wdy.base.module.base.WDYBaseApp;
-import com.wdy.base.module.photopicker.PhotoPickerActivity;
-import com.wdy.base.module.photopicker.model.PhotoInput;
+import com.wdy.base.module.photoPicker.PhotoPickerActivity;
+import com.wdy.base.module.photoPicker.model.PhotoInput;
 import com.wdy.base.module.util.ToastUtil;
 
 import java.io.File;

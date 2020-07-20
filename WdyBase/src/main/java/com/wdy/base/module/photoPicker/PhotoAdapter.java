@@ -1,4 +1,4 @@
-package com.wdy.base.module.photopicker;
+package com.wdy.base.module.photoPicker;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.wdy.base.module.R;
 import com.wdy.base.module.listen.OnRecyclerClickListen;
-import com.wdy.base.module.photopicker.model.Photo;
-import com.wdy.base.module.photopicker.utils.PhotoUtils;
-import com.wdy.base.module.photopicker.widgets.SquareImageView;
+import com.wdy.base.module.photoPicker.model.Photo;
+import com.wdy.base.module.photoPicker.utils.PhotoUtils;
+import com.wdy.base.module.photoPicker.widgets.SquareImageView;
 import com.wdy.base.module.util.ToastUtil;
 
 import java.util.ArrayList;

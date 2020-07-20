@@ -1,4 +1,4 @@
-package com.wdy.base.module.photopicker.utils;
+package com.wdy.base.module.photoPicker.utils;
 
 import android.content.Context;
 import android.net.Uri;
