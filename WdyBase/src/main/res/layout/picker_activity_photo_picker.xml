@@ -96,7 +96,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="12dp"
-                    android:text="1024张"
+                    android:text="0张"
                     android:textColor="#A9ffffff"
                     android:textSize="16sp" />
             </RelativeLayout>

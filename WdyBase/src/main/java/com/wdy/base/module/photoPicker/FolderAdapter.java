@@ -69,15 +69,17 @@ public class FolderAdapter extends RecyclerView.Adapter {
         }
         viewHolder.folderNameTV.setText(folder.getName());
         viewHolder.photoNumTV.setText(folder.getPhotos().size() + "张");
-        Glide.with(mContext).load(folder.getPhotos().get(0).getPath()).thumbnail(0.1f).into(viewHolder.photoIV);
-        viewHolder.picker_item_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getOnRecyclerClickListen() != null) {
-                    getOnRecyclerClickListen().onClick(position);
+        if (folder.getPhotos().size() > 0) {
+            Glide.with(mContext).load(folder.getPhotos().get(0).getPath()).thumbnail(0.1f).into(viewHolder.photoIV);
+            viewHolder.picker_item_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (getOnRecyclerClickListen() != null) {
+                        getOnRecyclerClickListen().onClick(position);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 
