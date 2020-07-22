@@ -369,7 +369,7 @@ public class PhotoPickerActivity extends WDYBaseActivity implements PhotoAdapter
 
     private void initAnimation(View dimLayout) {
         ObjectAnimator alphaInAnimator, alphaOutAnimator, transInAnimator, transOutAnimator;
-        int height = PhotoUtils.getHeightInPx(this) - 2 * CodeUtil.dip2px(this, 50) - CodeUtil.getNavigationBarHeight(this);
+        int height = PhotoUtils.getHeightInPx(this) - 2 * CodeUtil.dip2px(this, 50) ;
         alphaInAnimator = ObjectAnimator.ofFloat(dimLayout, "alpha", 0f, 0.7f);
         alphaOutAnimator = ObjectAnimator.ofFloat(dimLayout, "alpha", 0.7f, 0f);
         transInAnimator = ObjectAnimator.ofFloat(mFolderListView, "translationY", height, 0);

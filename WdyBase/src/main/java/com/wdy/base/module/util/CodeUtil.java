@@ -190,6 +190,15 @@ public class CodeUtil {
         return displayMetrics.heightPixels;
     }
 
+    public static int getStatusHeight(Activity activity) {
+        int height = 0;
+        int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            height = activity.getResources().getDimensionPixelSize(resourceId);
+        }
+        return height;
+    }
+
     /**
      * 获取虚拟功能键高度
      */
@@ -321,8 +330,6 @@ public class CodeUtil {
     }
 
 
-
-
     /**
      * param String
      *
@@ -361,7 +368,7 @@ public class CodeUtil {
                 num = 0;
             }
             back = num + "";
-        }else if(str instanceof Double){
+        } else if (str instanceof Double) {
             double num = (double) str;
             if (num < 0) {
                 num = 0;
@@ -378,7 +385,6 @@ public class CodeUtil {
             return str;
         }
     }
-
 
 
     // 得到本机ip地址
@@ -406,6 +412,7 @@ public class CodeUtil {
         return "";
 
     }
+
     /**
      * 判断SD卡是否存在
      *
@@ -426,7 +433,6 @@ public class CodeUtil {
         Matcher m = p.matcher(s);
         return m.matches();
     }
-
 
 
     /**
@@ -453,8 +459,6 @@ public class CodeUtil {
     }
 
 
-
-
     public static boolean isUrl(String url) {
         if (isEmpty(url)) {
             return false;
@@ -462,7 +466,6 @@ public class CodeUtil {
         Pattern pattern = Pattern.compile("^([hH][tT]{2}[pP]://|[hH][tT]{2}[pP][sS]://)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~\\/])+$");
         return pattern.matcher(url).matches();
     }
-
 
 
     public static boolean isEmail(String email) {
@@ -507,12 +510,13 @@ public class CodeUtil {
         Matcher m = p.matcher(string);
         return m.find();
     }
+
     public static String isApkUrlName(String url) {
         String apkName = "";
         try {
             String[] str1 = url.split("\\?");
-            String[] str2=str1[0].split("/");
-            apkName=str2[str2.length-1];
+            String[] str2 = str1[0].split("/");
+            apkName = str2[str2.length - 1];
         } catch (Exception e) {
             e.printStackTrace();
         }

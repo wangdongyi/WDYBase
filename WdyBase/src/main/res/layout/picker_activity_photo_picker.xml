@@ -10,12 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#191919"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <View
-            style="@style/titleStyles"
-            android:layout_width="match_parent"
-            android:background="@color/transparent" />
 
         <RelativeLayout
             android:layout_width="match_parent"
